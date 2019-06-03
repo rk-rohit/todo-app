@@ -24,7 +24,7 @@ class Home extends Component {
             post.map(post => {
                 return (
                     <div className="card mb-1" key={post.id}>
-                        <div className="card-header">
+                        <div className="card-header ">
                             <Link to={"/" + post.id}>{post.title}</Link>
                         </div>
                         <div className="card-body">
