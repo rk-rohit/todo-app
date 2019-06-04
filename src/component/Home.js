@@ -3,25 +3,15 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class Home extends Component {
-    state = {
-        post : []
-    }
-    componentDidMount(){
-        axios.get('https://jsonplaceholder.typicode.com/posts').then(res => {
-            this.setState({
-                post : res.data.slice(0, 10)
-            })
-        });
-    }
-
     render() {
         const postContainer = {
             height : '500px',
             overflow : 'auto'
         }
-        const {post} = this.state;
-        const Post = post.length ? (
-            post.map(post => {
+        console.log(this.props);
+        const {posts} = this.props;
+        const Post = posts.length ? (
+            posts.map(post => {
                 return (
                     <div className="card mb-1" key={post.id}>
                         <div className="card-header ">
@@ -47,4 +37,9 @@ class Home extends Component {
     }
 }
 
-export default Home;
+const mapStateToProps = (state)=> {
+    return {
+        posts : state.posts
+    }
+}
+export default connect(mapStateToProps)(Home);
